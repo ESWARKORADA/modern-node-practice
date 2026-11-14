@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 function returnPromise() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -8,6 +10,7 @@ function returnPromise() {
 
 const initFunction = async () => {
     console.log(await returnPromise());
+    console.log("My secret database password is:", process.env.DB_PASSWORD)
 }
 
 initFunction();
