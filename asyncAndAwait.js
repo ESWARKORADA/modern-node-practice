@@ -1,16 +1,17 @@
 require('dotenv').config();
 
-function returnPromise() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve("Returned Promise")
-        }, 5000);
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/api/health', (req, res)=>{
+    res.status(200).json({
+        status: "success",
+        message: "My Modern Express server is running!",
+        timestamp: new Date()
     })
-}
+})
 
-const initFunction = async () => {
-    console.log(await returnPromise());
-    console.log("My secret database password is:", process.env.DB_PASSWORD)
-}
-
-initFunction();
+app.listen(PORT, ()=>{
+    console.log(`Server running at http://localhost:${PORT}`);
+})
