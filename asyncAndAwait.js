@@ -18,10 +18,10 @@ app.post('/api/createUser', (req, res)=>{
     const {userName, role} = req.body;
 
     if(!userName || !role){
-        res.status(404).send({message: "both user name and role should sent"});
+       return res.status(404).send({message: "both user name and role should sent"});
     }
 
-    res.status(200).send({
+    res.status(201).send({
         id: 101,
         name: userName,
         role: role,
