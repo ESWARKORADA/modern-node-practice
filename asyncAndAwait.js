@@ -29,6 +29,21 @@ app.post('/api/createUser', (req, res)=>{
     })
 })
 
+app.get('/api/user/:id', (req, res)=>{
+    const id = req.params.id;
+
+    res.status(200).json({
+        status: "success",
+        message: `Featched details for the ID: ${id}`,
+        data:{
+            id: id,
+            name: 'Eswar Korada',
+            role: 'Super Admin',
+            status: 'Active'
+        }
+    })
+})
+
 app.listen(PORT, ()=>{
     console.log(`Server running at http://localhost:${PORT}`);
 })
