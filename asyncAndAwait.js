@@ -44,6 +44,17 @@ app.get('/api/user/:id', (req, res)=>{
     })
 })
 
+app.get('/api/search', (req, res)=>{
+    const {role, city} = req.query;
+
+    return res.status(200).json({
+        message:'Filter applied',
+        filterApplied: {
+            role, city
+        }
+    })
+})
+
 app.listen(PORT, ()=>{
     console.log(`Server running at http://localhost:${PORT}`);
 })
