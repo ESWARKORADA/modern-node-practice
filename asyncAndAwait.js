@@ -1,11 +1,12 @@
 require('dotenv').config();
+const userRoutes = require('./routes/userRoutes.js');
 
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-
+app.use('/api/users', userRoutes)
 app.get('/api/health', (req, res)=>{
     res.status(200).json({
         status: "success",
