@@ -1,11 +1,13 @@
 require('dotenv').config();
 const userRoutes = require('./routes/userRoutes.js');
+const requestLogger = require('./middleware/logger.js');
 
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(requestLogger);
 app.use('/api/users', userRoutes)
 app.get('/api/health', (req, res)=>{
     res.status(200).json({
