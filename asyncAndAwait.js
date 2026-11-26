@@ -58,6 +58,27 @@ app.get('/api/search', (req, res)=>{
     })
 })
 
+const dbPool = require('./config/db.js');
+
+app.get('/api/health', async (req, res) => {
+    try {
+        console.log('executed..')
+        const result = await dbPool.query('SELECT NOW()'); 
+
+        return res.status(200).json({
+            status: "success",
+            message: "Server & Cloud PostgreSQL Database are healthy!",
+            dbTime: result.rows[0].now
+        });
+    } catch (error) {
+        console.error("DB Error:", error.message);
+        return res.status(500).json({
+            status: "error",
+            message: "Database connection failed!"
+        });
+    }
+});
+
 app.listen(PORT, ()=>{
     console.log(`Server running at http://localhost:${PORT}`);
 })
