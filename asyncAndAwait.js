@@ -9,13 +9,6 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(requestLogger);
 app.use('/api/users', userRoutes)
-app.get('/api/health', (req, res)=>{
-    res.status(200).json({
-        status: "success",
-        message: "My Modern Express server is running!",
-        timestamp: new Date()
-    })
-})
 
 app.post('/api/createUser', (req, res)=>{
     const {userName, role} = req.body;
